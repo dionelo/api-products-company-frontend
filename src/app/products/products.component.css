@@ -1,5 +1,23 @@
 .product-details {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.6);
     padding: 1.5rem;
-    display: inline-block;
+}
+
+.product-buttons {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 1.2rem;
+}
+
+/* pagination */
+
+.pagination .page-item .page-link {
+    cursor: pointer;
+}
+
+.pagination .first-item {
+    display: none !important; 
+}
+
+.pagination .last-item {
+    display: none !important;
 }

@@ -1,12 +1,42 @@
-<div *ngFor="let product of products">
+<div *ngFor="let product of pageOfProducts">
   <div class="card bg-dark text-white">
     <img [src]="product.imageURL" class="card-img" [alt]="product.name" />
-    <div class="card-img-overlay">
-      <div class="product-details">
+    <div
+      class="card-img-overlay d-flex align-items-start justify-content-between"
+    >
+      <div class="product-details flex-column">
         <h2 class="card-title">{{ product.name }}</h2>
         <p class="card-text">{{ product.category }}</p>
-        <p class="card-text">{{ product.price }}</p>
+        <p class="card-text">$ {{ product.price }}</p>
+      </div>
+
+      <div class="product-buttons mt-auto" *ngIf="authService.isLoggedIn()">
+        <button
+          type="button"
+          class="btn btn-outline-primary me-2"
+          (click)="editThisProduct(product)"
+        >
+          Edit
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-danger"
+          (click)="deleteThisProduct(product._id)"
+        >
+          Delete
+        </button>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- Pagination -->
+<div class="row-fluid">
+  <div class="card-footer pb-3 pt-3">
+    <jw-pagination
+      [items]="productService.products"
+      [pageSize]=3
+      (changePage)="onChangePage($event)"
+    ></jw-pagination>
   </div>
 </div>

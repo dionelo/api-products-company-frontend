@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">The Company</a>
+    <a class="navbar-brand" routerLink="/products">TUQUI</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -12,15 +12,32 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav me-auto">
         <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
-        <a class="nav-link" href="#">Products</a>
-        <a class="nav-link me-auto" href="#">Add Products</a>
+        <li *ngIf="authService.isLoggedIn()">
+          <a class="nav-link me-auto" routerLink="/new-product">Add Products</a>
+        </li>
       </div>
       <div class="navbar-nav">
-        <a class="nav-link" routerLink="/register">Register</a>
-        <a class="nav-link" routerLink="/login">Login</a>
+        <li *ngIf="!authService.isLoggedIn()">
+          <a class="nav-link" routerLink="/register">Register</a>
+        </li>
+        <li *ngIf="!authService.isLoggedIn()">
+          <a class="nav-link" routerLink="/login">Login</a>
+        </li>
+        <!-- <li
+          *ngIf="authService.isLoggedIn()"
+        >
+          <a class="nav-link"> {{user}} </a> -->
+        <li
+          *ngIf="authService.isLoggedIn()"
+          (click)="authService.logout()"
+          style="cursor: pointer"
+        >
+          <a class="nav-link">Logout</a>
+        </li>
       </div>
     </div>
   </div>
